@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" >
 
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>CodePen - Traffic System - John Shao - Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      body {
+  background: #222;
+}
+
+a {
+  display: block;
+  color: #222;
+  text-decoration: none;
+}
+
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+header h1 {
+  text-align: center;
+  background: #1092d8;
+  color: white;
+  height: 40px;
+  line-height: 40px;
+}
+
+.loading {
+  background: snow;
+  height: 100vh;
+  line-height: 80vh;
+  text-align: center;
+  margin: 0;
+}
+
+.item-info {
+  color: darkgrey;
+  font-size: .8em;
+}
+
+h1, h2 {
+  margin: 0;
+  font-size: 1em;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app h2 {
+  padding: .5em 1em;
+  background: rgba(16, 146, 216, 0.9);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+li.system-entry {
+  background: snow;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+}
+
+footer {
+  background: snow;
+  color: #222;
+  height: 20px;
+  font-size: .5em;
+  text-align: left;
+  line-height: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  text-decoration: underline;
+  padding-left: 1em;
+}
+
+    </style>
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+  
+  
+
+</head>
+
+<body translate="no" >
+
+  <div id="app" class="app">
+  <p class="loading" v-if="!isLoaded">Loading...</p>
+  <ul>
+    <li class="area" v-for="(list, key) in systems">
+      <h2>{{ key }}</h2>
+      <ul>
+        <li class="system-entry" v-for="system in list">
+          <system-item v-bind:system="system"></system-item>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<footer>
+  source from: DSAT
+  </footer>
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js'></script>
+
+  
+
+    <script >
+      Vue.component("system-item", {
+  props: ["system"],
+  template: "<div>\n    <a :href=\"system.url\">\n      {{ system.name }}\n      <div class=\"item-info\">{{ system.item_info }}</div>\n    </a>\n  </div>"
+});
+
+var app = new Vue({
+  el: "#app",
+  data: {
+    isLoaded: false,
+    systems: {}
+  },
+  mounted: function mounted() {
+    this.isLoaded = true;
+    this.systems = {
+      "超速偵測系統": [{ "name": "澳門", "item_info": "22個", "url": "http://www.dsat.gov.mo/dsat/images/cam_macau_tc.jpg" }, { "name": "氹仔", "item_info": "9個", "url": "http://www.dsat.gov.mo/dsat/images/cam_taipai_tc.jpg" }, { "name": "路環", "item_info": "14個", "url": "http://www.dsat.gov.mo/dsat/images/cam_coi_tc.jpg" }, { "name": "友誼大橋", "item_info": "17個", "url": "http://www.dsat.gov.mo/dsat/images/cam_bridge1_tc.jpg" }, { "name": "嘉樂庇大橋", "item_info": "4個", "url": "http://www.dsat.gov.mo/dsat/images/cam_taipai_tc.jpg" }, { "name": "西灣大橋", "item_info": "21個", "url": "http://www.dsat.gov.mo/dsat/images/cam_bridge3_tc.jpg" }, { "name": "路氹連貫公路圓形地下層隧道	", "item_info": "8個", "url": "http://www.dsat.gov.mo/dsat/images/cam_circle_tc.jpg" }, { "name": "橫琴隧道", "item_info": "12個", "url": "http://www.dsat.gov.mo/dsat/images/cam_tunnel_tc.jpg" }],
+      "衝紅燈偵測系統": [{ "name": "澳門", "item_info": "62個", "url": "http://www.dsat.gov.mo/dsat/images/speedcam.png" }],
+      "違泊偵測系統": [{ "name": "澳門", "item_info": "宋玉生廣場中土大廈正門巴士站，建興龍廣場正門巴士站，南灣大馬路時代商業中心巴士站，羅理基博士大馬路近培道中學，華士古達伽馬花園停車場出入口，慕拉士大馬路近龍園巴士站，南灣大馬路近中華廣場，南灣大馬路近培道中學，關閘工人球場停車場出入口，栢麗停車場出入口，二龍喉公園巴士站，媽閣巴士站，北京街假日酒店巴士站，治安警察局巴士站，看台街/騎士馬路巴士站，水坑尾/公共行政大樓巴士站，水坑尾街巴士站，連勝馬路/高士德巴士站", "url": "http://www.dsat.gov.mo/dsat/images/parking_cam_taipa_tc.jpg" }, { "name": "氹仔", "item_info": "孫逸仙博士大馬路黃實線", "url": "http://www.dsat.gov.mo/dsat/images/parking_cam_taipa_tc.jpg" }]
+    };
+  }
+});
+    </script>
+
+
+
+  
+  
+
+</body>
+
+</html>
+ 
