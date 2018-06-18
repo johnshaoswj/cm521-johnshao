@@ -128,7 +128,7 @@ footer {
     <script >
       Vue.component("system-item", {
   props: ["system"],
-  template: "<div>\n    <a :href=\"system.url\">\n      {{ system.name }}\n      <div class=\"item-info\">{{ system.item_info }}</div>\n    </a>\n  </div>"
+  template: "<div>\n    <a :href=\"system.url\">\n      {{ system.name }}\n      <div class=\"item-info\">{{ system.item_info }} &raquo;</div>\n    </a>\n  </div>"
 });
 
 var app = new Vue({
